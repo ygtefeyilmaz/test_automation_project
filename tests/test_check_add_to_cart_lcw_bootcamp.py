@@ -12,57 +12,58 @@ from tests.base_test import BaseTest
 
 class TestCheckAddToCartLcwBootcamp(BaseTest):
 
-    def compare_product_names(name1, name2, word_count=3):
-        """Compares the first few words of two product names."""
-        short_name1 = " ".join(name1.split()[:word_count])  # Get first few words
-        short_name2 = " ".join(name2.split()[:word_count])  # Get first few words
-
-        assert short_name1 == short_name2, \
-            f"❌ Test Failed: Expected '{short_name1}', but found '{short_name2}'"
-
-        print(f"✅ Test Passed: Product matched -> '{short_name1}'")
+    # def compare_product_names(name1, name2, word_count=3):
+    #     """Compares the first few words of two product names."""
+    #     short_name1 = " ".join(name1.split()[:word_count])  # Get first few words
+    #     short_name2 = " ".join(name2.split()[:word_count])  # Get first few words
+    #
+    #     assert short_name1 == short_name2, \
+    #         f"❌ Test Failed: Expected '{short_name1}', but found '{short_name2}'"
+    #
+    #     print(f"✅ Test Passed: Product matched -> '{short_name1}'")
 
     def test_check_lcw_add_to_cart(self):
         # time.sleep(2)
 
         home_page = HomePage(self.driver)
         home_page.accept_cookies()
-        time.sleep(1)
-        home_page.is_on_homepage()
+        # time.sleep(1)
+
         home_page.search_product()
-        time.sleep(1)
+        # time.sleep(1)
+        home_page.is_on_homepage()
         home_page.click_search_button()
-        time.sleep(1)
+        # time.sleep(1)
 
         search_result_page = SearchResultPage(self.driver)
-        time.sleep(2)
+        # time.sleep(2)
         search_result_page.check_result()
-        time.sleep(2)
+        # time.sleep(2)
         search_result_page.go_to_second_page()
-        time.sleep(2)
+        # time.sleep(2)
         search_result_page.check_second_page()
-      #  search_result_page.scroll_to_bottom()
-        time.sleep(3)
-       # search_result_page.click_second_page_button()
+      #   time.sleep(3)
         search_result_page.select_product()
-        time.sleep(2)
+        # time.sleep(2)
 
         product_page = ProductPage(self.driver)
-        time.sleep(2)
+        # time.sleep(2)
         expected_product_name = product_page.get_product_name()
         product_page.click_add_to_cart_button()
-        time.sleep(2)
+        # time.sleep(2)
         product_page.click_cart_icon()
 
         cart_page = CartPage(self.driver)
         assert cart_page.is_cart_page(), "Test Failed: Not on the cart page"
-        time.sleep(2)
+        # time.sleep(2)
 
         assert cart_page.is_correct_product_in_cart(expected_product_name), "Test Failed: Wrong product in the cart!"
         cart_page.click_delete_button()
-        time.sleep(2)
+        # time.sleep(2)
+        assert cart_page.is_product_deleted(), "Test Failed: Product was not deleted from the cart!"
+        # time.sleep(2)
         cart_page.click_main_logo()
-        time.sleep(2)
+        # time.sleep(2)
         home_page.is_on_homepage()
 
 

@@ -63,7 +63,7 @@ class BasePage(object):
         """Asserts that an element is present on the page."""
         try:
             self.wait.until(ec.presence_of_element_located((by, value)))
-            print(f"You are on the homepage")
+            print(f"You are on the correct page")
             return True
         except:
             raise AssertionError(f"Test Failed: {error_message}")
