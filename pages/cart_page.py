@@ -54,9 +54,9 @@ class CartPage(BasePage):
             confirmation_message = self.wait.until(
                 lambda driver: driver.find_element(*self.DELETE_CONFIRMATION_MESSAGE)
             )
-            assert confirmation_message.is_displayed(), "❌ Test Failed: Product deletion message not found!"
-            print("✅ Test Passed: Product successfully removed from the cart.")
+            assert confirmation_message.is_displayed(), "Product deletion message not found!"
+            print("Product successfully removed from the cart.")
             return True
         except:
-            print("❌ Test Failed: Product deletion verification failed.")
+            print("Product deletion verification failed.")
             return False

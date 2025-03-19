@@ -30,6 +30,6 @@ class HomePage(BasePage):
     #          print("You are NOT on the homepage.")
     #          return False
     def is_on_homepage(self):
-        """Verifies that we are on the homepage using the shared assertion method."""
+        """Verifies that we are on the homepage by checking if the identifier present."""
         return self.assert_element_present(*self.HOMEPAGE_IDENTIFIER, error_message="Not on the homepage!", )
 

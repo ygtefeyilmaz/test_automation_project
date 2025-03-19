@@ -59,21 +59,13 @@ class BasePage(object):
 
         raise Exception("Failed to click the element after scrolling down multiple times.")
 
-    def assert_element_present(self, by, value, error_message="Element not found!"):
+    def assert_element_present(self, by, value, error_message="Element not found, You are on the wrong page"):
         """Asserts that an element is present on the page."""
         try:
             self.wait.until(ec.presence_of_element_located((by, value)))
-            print(f"You are on the correct page")
+            print(f"Element {value} found. You are on the CORRECT page")
             return True
         except:
             raise AssertionError(f"Test Failed: {error_message}")
 
-    def compare_product_names(name1, name2, word_count=3):
-        """Compares the first few words of two product names."""
-        short_name1 = " ".join(name1.split()[:word_count])  # Get first few words
-        short_name2 = " ".join(name2.split()[:word_count])  # Get first few words
 
-        assert short_name1 == short_name2, \
-            f"❌ Test Failed: Expected '{short_name1}', but found '{short_name2}'"
-
-        print(f"✅ Test Passed: Product matched -> '{short_name1}'")
