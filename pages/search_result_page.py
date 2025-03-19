@@ -11,24 +11,16 @@ from pages.base_page import BasePage
 
 class SearchResultPage(BasePage):
     SECOND_PAGE_BUTTON = (By.CSS_SELECTOR, 'a[aria-label="2 sayfasına git"]')
-
     SEARCH_BUTTON = (By.ID, 'nav-search-submit-button')
-
     PRODUCT_LINK = (By.CSS_SELECTOR, 'div[data-index="9"] h2 a')
-
-    # THIRD_PRODUCT = (By.CSS_SELECTOR, 'div[data-index="9"] h2 a')
-    # THIRD_PRODUCT = (By.XPATH, '//div[@data-index="9"]//h2/a')
-    # THIRD_PRODUCT = (By.CSS_SELECTOR, 'div[cel_widget_id="MAIN-SEARCH_RESULTS-9"] h2 a')
-    # THIRD_PRODUCT = (By.XPATH, '//div[contains(@cel_widget_id, "MAIN-SEARCH_RESULTS")]/descendant::h2/a')
-    # THIRD_PRODUCT = (By.CSS_SELECTOR, '[data-index="9"] .a-section.aok-relative.s-image-square-aspect')
-    THIRD_PRODUCT = (By.CSS_SELECTOR, '[data-index="5"] .a-link-normal.s-line-clamp-4.s-link-style.a-text-normal')
+    THIRD_PRODUCT = (By.CSS_SELECTOR, '[data-index="5"] .a-link-normal.s-line-clamp-4.s-link-style.a-text-normal') #locator for the product with the data index=5 which is equivalent to the 3rd product on the second page.
     # RESULT_INFO = (By.CLASS_NAME, 'a-size-base a-spacing-small a-spacing-top-small a-text-normal')
     RESULT_INFO = (By.CSS_SELECTOR, 'h2.a-size-base.a-spacing-small.a-spacing-top-small.a-text-normal')
 
 
     def check_result(self):
+        """Checks that are there any results by searching for '1-' in '40.000 üzeri sonuç arasından 1-48 arası gösteriliyor. Aranan ürün: "samsung"' """
         try:
-
             result_element = self.find_element(*self.RESULT_INFO)
             result_text = result_element.text.strip()  # Extract text and remove extra spaces
 
@@ -76,6 +68,7 @@ class SearchResultPage(BasePage):
         self.click_element(self.SECOND_PAGE_BUTTON)
 
     def check_second_page(self):
+        """Checks that are there any results in second page by searching for '49-' in '40.000 üzeri sonuç arasından 49-96 arası gösteriliyor. Aranan ürün: "samsung"' """
         try:
 
             result_element = self.find_element(*self.RESULT_INFO)
@@ -91,12 +84,8 @@ class SearchResultPage(BasePage):
 
     def select_product(self):
         self.click_element(self.THIRD_PRODUCT)
-        """Extracts the product link and navigates to the product page"""
-        # product_element = self.wait.until(ec.presence_of_element_located(self.PRODUCT_LINK))  # Wait for the element
-        # product_url = product_element.get_attribute("href")  # Extract the href link
-        #
-        # print(f"Navigating to product page: {product_url}")
-        # self.driver.get(product_url)  # Open the product page
+
+
 
 
 

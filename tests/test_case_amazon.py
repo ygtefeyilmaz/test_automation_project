@@ -18,7 +18,6 @@ class TestCheckAddToCartLcwBootcamp(BaseTest):
         home_page = HomePage(self.driver)
         home_page.accept_cookies()
         time.sleep(1)
-
         home_page.search_product()
         # time.sleep(1)
         home_page.is_on_homepage()
