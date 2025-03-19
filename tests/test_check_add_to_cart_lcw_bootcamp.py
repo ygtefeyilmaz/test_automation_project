@@ -27,7 +27,7 @@ class TestCheckAddToCartLcwBootcamp(BaseTest):
 
         home_page = HomePage(self.driver)
         home_page.accept_cookies()
-        # time.sleep(1)
+        time.sleep(1)
 
         home_page.search_product()
         # time.sleep(1)
@@ -40,7 +40,7 @@ class TestCheckAddToCartLcwBootcamp(BaseTest):
         search_result_page.check_result()
         # time.sleep(2)
         search_result_page.go_to_second_page()
-        # time.sleep(2)
+        # time.sleep(1)
         search_result_page.check_second_page()
       #   time.sleep(3)
         search_result_page.select_product()
@@ -50,17 +50,18 @@ class TestCheckAddToCartLcwBootcamp(BaseTest):
         # time.sleep(2)
         expected_product_name = product_page.get_product_name()
         product_page.click_add_to_cart_button()
+        product_page.is_product_added_to_cart()
         # time.sleep(2)
         product_page.click_cart_icon()
 
         cart_page = CartPage(self.driver)
-        assert cart_page.is_cart_page(), "Test Failed: Not on the cart page"
+        cart_page.is_cart_page(), "Test Failed: Not on the cart page"
         # time.sleep(2)
 
-        assert cart_page.is_correct_product_in_cart(expected_product_name), "Test Failed: Wrong product in the cart!"
+        cart_page.is_correct_product_in_cart(expected_product_name), "Test Failed: Wrong product in the cart!"
         cart_page.click_delete_button()
         # time.sleep(2)
-        assert cart_page.is_product_deleted(), "Test Failed: Product was not deleted from the cart!"
+        cart_page.is_product_deleted(), "Test Failed: Product was not deleted from the cart!"
         # time.sleep(2)
         cart_page.click_main_logo()
         # time.sleep(2)

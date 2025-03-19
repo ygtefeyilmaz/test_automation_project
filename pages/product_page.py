@@ -11,8 +11,8 @@ class ProductPage(BasePage):
     ADD_TO_CART = (By.ID, 'add-to-cart-button')
     CART_ICON = (By.ID, 'nav-cart')
     CART_COUNT = (By.ID, 'nav-cart-count')
-    cart_count = '1'
     PRODUCT_NAME = (By.ID, 'productTitle')  # Locator for 3rd product name
+    ADD_CONFIRMATION_MESSAGE = (By.ID, "NATC_SMART_WAGON_CONF_MSG_SUCCESS")  # Message displayed after adding product
 
 
     def is_add_to_cart_present(self):
@@ -58,3 +58,16 @@ class ProductPage(BasePage):
 
         print(f"✅ Product Name on Page: {short_product_name}")  # Debugging log
         return short_product_name
+
+    def is_product_added_to_cart(self):
+        """Verifies that the product is added to the cart by checking for the confirmation message."""
+        try:
+            confirmation_message = self.wait.until(
+                lambda driver: driver.find_element(*self.ADD_CONFIRMATION_MESSAGE)
+            )
+            assert confirmation_message.is_displayed(), "❌ Test Failed: Product addition message not found!"
+            print("✅ Test Passed: Product successfully added to the cart.")
+            return True
+        except:
+            print("❌ Test Failed: Product addition verification failed.")
+            return False
