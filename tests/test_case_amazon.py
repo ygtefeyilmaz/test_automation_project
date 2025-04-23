@@ -9,10 +9,10 @@ from pages.search_result_page import SearchResultPage
 from tests.base_test import BaseTest
 
 
-class TestCheckAddToCartLcwBootcamp(BaseTest):
+class TestCaseAmazon(BaseTest):
 
 
-    def test_check_lcw_add_to_cart(self):
+    def test_case_amazon(self):
         # time.sleep(2)
 
         home_page = HomePage(self.driver)
